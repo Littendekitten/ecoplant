@@ -1,1 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EcoPlant | Mystery Plant Pots</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+        body { font-family: 'Poppins', sans-serif; }
+    </style>
+</head>
+<body class="bg-stone-50 text-stone-800 flex flex-col min-h-screen">
 
+    <header class="bg-white shadow-sm sticky top-0 z-50">
+        <div class="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
+            <a href="#" class="text-2xl font-bold text-emerald-700 flex items-center gap-2">
+                🌱 EcoPlant
+            </a>
+            <nav class="space-x-6">
+                <a href="#shop" class="hover:text-emerald-600 transition">Shop</a>
+                <a href="#about" class="hover:text-emerald-600 transition">Our Concept</a>
+            </nav>
+        </div>
+    </header>
+
+    <section class="bg-emerald-50 py-20 px-4 text-center">
+        <div class="max-w-3xl mx-auto">
+            <span class="text-emerald-600 font-semibold tracking-wide uppercase text-sm">Embrace the Surprise</span>
+            <h1 class="text-4xl md:text-5xl font-bold text-stone-900 mt-2 mb-6 leading-tight">
+                Beautiful Sustainable Pots. <br><span class="text-emerald-700">A Mystery Plant Inside.</span>
+            </h1>
+            <p class="text-lg text-stone-600 mb-8">
+                Each EcoPlant pot is handcrafted from recycled materials and comes pre-seeded with a hidden, hand-picked mystery plant. Take care of your pot, and watch your surprise companion bloom!
+            </p>
+            <a href="#shop" class="bg-emerald-700 hover:bg-emerald-800 text-white font-semibold px-8 py-3 rounded-full shadow-md transition duration-300">
+                Reveal Your Mystery Pot
+            </a>
+        </div>
+    </section>
+
+    <main id="shop" class="max-w-6xl mx-auto px-4 py-16 flex-grow">
+        <h2 class="text-3xl font-bold text-center text-stone-900 mb-12">Choose Your Canvas</h2>
+        
+        <div class="grid md:grid-cols-3 gap-8">
+            <div class="bg-white rounded-2xl shadow-sm border border-stone-100 overflow-hidden flex flex-col">
+                <div class="h-64 bg-amber-100 flex items-center justify-center text-6xl">🏺</div>
+                <div class="p-6 flex flex-col flex-grow">
+                    <h3 class="text-xl font-bold mb-2">The Classic Terracotta</h3>
+                    <p class="text-stone-600 text-sm mb-4 flex-grow">Earthy, breathable, and timeless. Houses a mystery indoor foliage plant or succulent.</p>
+                    <div class="flex justify-between items-center mt-auto">
+                        <span class="text-xl font-bold text-stone-900">$24.99</span>
+                        <button onclick="handlePurchase('Classic Terracotta', 24.99)" class="bg-emerald-700 hover:bg-emerald-800 text-white px-4 py-2 rounded-lg text-sm font-semibold transition">
+                            Buy & Plant
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-2xl shadow-sm border border-stone-100 overflow-hidden flex flex-col">
+                <div class="h-64 bg-stone-200 flex items-center justify-center text-6xl">🗿</div>
+                <div class="p-6 flex flex-col flex-grow">
+                    <h3 class="text-xl font-bold mb-2">The Minimalist Concrete</h3>
+                    <p class="text-stone-600 text-sm mb-4 flex-grow">Sleek geometric design made from upcycled materials. Houses a mystery geometric or exotic plant.</p>
+                    <div class="flex justify-between items-center mt-auto">
+                        <span class="text-xl font-bold text-stone-900">$29.99</span>
+                        <button onclick="handlePurchase('Minimalist Concrete', 29.99)" class="bg-emerald-700 hover:bg-emerald-800 text-white px-4 py-2 rounded-lg text-sm font-semibold transition">
+                            Buy & Plant
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-2xl shadow-sm border border-stone-100 overflow-hidden flex flex-col">
+                <div class="h-64 bg-rose-100 flex items-center justify-center text-6xl">🥣</div>
+                <div class="p-6 flex flex-col flex-grow">
+                    <h3 class="text-xl font-bold mb-2">The Pastel Bio-Pot</h3>
+                    <p class="text-stone-600 text-sm mb-4 flex-grow">100% biodegradable bamboo fiber in soft tones. Houses a mystery flowering plant.</p>
+                    <div class="flex justify-between items-center mt-auto">
+                        <span class="text-xl font-bold text-stone-900">$27.99</span>
+                        <button onclick="handlePurchase('Pastel Bio-Pot', 27.99)" class="bg-emerald-700 hover:bg-emerald-800 text-white px-4 py-2 rounded-lg text-sm font-semibold transition">
+                            Buy & Plant
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-stone-900 text-stone-400 py-8 border-t border-stone-800 text-center text-sm">
+        <p>&copy; 2026 EcoPlant Business. All rights reserved.</p>
+    </footer>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+        import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+
+        // Your Firebase configuration (Pre-filled with your project ID)
+        const firebaseConfig = {
+            apiKey: "YOUR_FIREBASE_API_KEY", // <-- Replace with your actual Firebase API Key
+            authDomain: "ecoplant-business.firebaseapp.com",
+            projectId: "ecoplant-business",
+            storageBucket: "ecoplant-business.appspot.com",
+            messagingSenderId: "YOUR_MESSAGING_SENDER_ID", // <-- Replace with your Sender ID
+            appId: "YOUR_APP_ID" // <-- Replace with your App ID
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        // Expose purchase handler to the window object so inline HTML onclick can use it
+        window.handlePurchase = async function(potName, price) {
+            try {
+                // Simulate an order creation/checkout step
+                const orderData = {
+                    potType: potName,
+                    price: price,
+                    status: 'pending_payment',
+                    createdAt: serverTimestamp()
+                };
+
+                // Add document to "orders" collection in Firestore
+                const docRef = await addDoc(collection(db, "orders"), orderData);
+                
+                alert(`🎉 Awesome choice! Initiating order for ${potName}.\nOrder Tracked ID: ${docRef.id}`);
+                console.log("Document written with ID: ", docRef.id);
+            } catch (e) {
+                console.error("Error adding document: ", e);
+                alert("Something went wrong connecting to EcoPlant servers. Check your console config!");
+            }
+        }
+    </script>
+</body>
+</html>
